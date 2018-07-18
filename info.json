@@ -1,0 +1,43 @@
+{
+    "port" : 8000,
+    "serverUrl" : "127.0.0.1",
+    "validExtensions": [
+        {
+            "ext":".html",
+            "name":"text/html"
+        },
+        {
+            "ext":".js",
+            "name":"application/javascript"
+        },
+        {
+            "ext":".css",
+            "name":"text/css"
+        },
+        {
+            "ext":".txt",
+            "name":"text/plain"
+        },
+        {
+            "ext":".jpg",
+            "name":"image/jpeg"
+        },
+        {
+            "ext":".gif",
+            "name":"image/gif"
+        },
+        {
+            "ext":".png",
+            "name":"image/png"
+        },
+        {
+            "ext":".woff",
+            "name":"application/font-woff"
+        },
+        {
+            "ext":".woff2",
+            "name":"application/font-woff2"
+        }
+
+    ]
+}
