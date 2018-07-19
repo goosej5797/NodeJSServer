@@ -2,7 +2,7 @@ var http = require("http");
 var path = require("path");
 var fs = require("fs");
 
-fs.readFile("info.json", function(err, data){
+fs.readFile("config/info.json", function(err, data){
     if(err){
         console.log(err);
     }else{
@@ -41,7 +41,7 @@ function serveApiCall(filename, res){
     else{
         res.writeHead(500);
     }
-    res.end(); 
+    res.end();
 }
 
 function serveFileCall(filename, res){
