@@ -1,16 +1,20 @@
-var port = 8000;
-var serverUrl = "127.0.0.1";
-
 var http = require("http");
 var path = require("path");
 var fs = require("fs");
 
-setUpServer();
+fs.readFile("info.json", function(err, data){
+    if(err){
+        console.log(err);
+    }else{
+        var parsedInfo = JSON.parse(data);
+        setUpServer(parsedInfo);
+    }    
+});
 
 //Creates the server that listens for any calls 
 //on the URL: 127.0.0.1 and on the port 8000.
-function setUpServer(){
-    console.log("Starting web server at " + serverUrl + ":" + port);
+function setUpServer(serverInfo){
+    console.log("Starting web server at " + serverInfo["serverUrl"] + ":" + serverInfo["port"]);
     http.createServer( function(req, res) {
         var filename = req.url;
         var extension = path.extname(filename);
@@ -19,17 +23,15 @@ function setUpServer(){
         }else{
             serveApiCall(filename, res);
         }
-    }).listen(port, serverUrl);
+    }).listen(serverInfo["port"], serverInfo["serverUrl"]);
 }
-
-
 
 function serveApiCall(filename, res){
     //Initial check for first part of string
     //to make sure it is an actual API call
     if(filename.substring(0,4) == '/api'){
         //Call specific API...If API doesn't exist
-        //nothing happens and a 500 is returned
+        //a 500 is returned to the sender
         if(apiCall(filename.substring(4))){
             res.writeHead(200);
         }else{
@@ -69,7 +71,7 @@ function getFile(localPath, res) {
 }
 
 function apiCall(apiPath){
-    switch(apiPath){
+    switch(apiPath){                                      
         case "/":   //Example
             //Call API function here --- ex."testApiCall();"
             break;
@@ -78,8 +80,6 @@ function apiCall(apiPath){
     }
     return 1;
 }
-
-
 
 //ORIGINAL CODE...REPLACED TO ALLOW ALL EXTENSIONS
 // validMimeType = validExtensions[ext] != undefined;
