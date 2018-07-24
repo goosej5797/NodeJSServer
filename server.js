@@ -72,13 +72,18 @@ function getFile(localPath, res) {
 
 function apiCall(parsedUrl){
     switch(parsedUrl.pathname.substring(4)){                                      
-        case "/":   //Example
-            //Call API function here --- ex."testApiCall();"
+        case "/search":   //Example parsedUrl.query gives a list of all params
+            search(parsedUrl.query);
             break;
         default:
             return 0;
     }
     return 1;
+}
+
+function search(query){
+    var name = query["name"];
+    console.log("My name is " + name);
 }
 
 //ORIGINAL CODE...REPLACED TO ALLOW ALL EXTENSIONS
