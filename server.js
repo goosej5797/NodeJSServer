@@ -32,16 +32,13 @@ function serveApiCall(parsedUrl, res){
     if(parsedUrl.pathname.substring(0,4) == '/api'){
         //Call specific API...If API doesn't exist
         //a 500 is returned to the sender
-        if(apiCall(parsedUrl)){
-            res.writeHead(200);
-        }else{
-            res.writeHead(500);
-        }
+        apiCall(parsedUrl, res);
     }
     else{
         res.writeHead(500);
+        res.end();
     }
-    res.end();
+    
 }
 
 function serveFileCall(parsedUrl, res){
@@ -70,23 +67,25 @@ function getFile(localPath, res) {
 	});
 }
 
-function apiCall(parsedUrl){
+function apiCall(parsedUrl, res){
     switch(parsedUrl.pathname.substring(4)){                                      
         case "/search":   //Example parsedUrl.query gives a list of all params
-            search(parsedUrl.query);
+            search(parsedUrl.query, res);
             break;
         default:
-            return 0;
+            res.writeHead(500);
+            res.end();
     }
-    return 1;
 }
 
-function search(query){
+function search(query, res){
     var name = query["name"];
-    console.log("My name is " + name);
+    res.writeHead(200);
+    res.write('<h1>API was called</h1>');
+    res.end();
 }
 
-//ORIGINAL CODE...REPLACED TO ALLOW ALL EXTENSIONS
+//ORIGINAL CODE...REPLAC,ED TO ALLOW ALL EXTENSIONS
 // validMimeType = validExtensions[ext] != undefined;
 //
 // if (validMimeType) {
