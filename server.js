@@ -9,7 +9,7 @@ fs.readFile("config/info.json", function(err, data){
     }else{
         var parsedInfo = JSON.parse(data);
         setUpServer(parsedInfo);
-    }    
+    }
 });
 
 //Creates the server that listens for any calls 
