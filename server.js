@@ -12,7 +12,7 @@ fs.readFile("config/info.json", function(err, data){
     }
 });
 
-//Creates the server that listens for any calls 
+//Creates the server that listens for any calls
 //on the URL: 127.0.0.1 and on the port 8000.
 function setUpServer(serverInfo){
     console.log("Starting web server at " + serverInfo["serverUrl"] + ":" + serverInfo["port"]);
@@ -81,11 +81,11 @@ function apiCall(parsedUrl, res){
 function search(query, res){
     var name = query["name"];
     res.writeHead(200);
-    res.write('<h1>API was called</h1>');
+    res.write('<h1>API was called by ' + name + '</h1>');
     res.end();
 }
 
-//ORIGINAL CODE...REPLAC,ED TO ALLOW ALL EXTENSIONS
+//ORIGINAL CODE...REPLACED TO ALLOW ALL EXTENSIONS
 // validMimeType = validExtensions[ext] != undefined;
 //
 // if (validMimeType) {
