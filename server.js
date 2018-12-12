@@ -1,6 +1,10 @@
+//HTTP DOCS: https://nodejs.org/api/http.html
 var http = require("http");
+//PATH DOCS: https://nodejs.org/api/path.html
 var path = require("path");
+//FS DOCS: https://nodejs.org/api/fs.html
 var fs = require("fs");
+//URL DOCS: https://nodejs.org/api/url.html
 var url = require('url');
 
 fs.readFile("config/info.json", function(err, data){
